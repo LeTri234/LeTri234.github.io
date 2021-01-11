@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Machine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"></head>
+<body>
+<div id="quote-box" class="container-fluid vh-100">
+        <div class="card position-absolute top-50 start-50 translate-middle" style="max-width:55%; ">
+        <div id="text" class="text-center blockquote p-4"></div>
+        <div id="author" class="blockquote-footer text-end p-3"></div>
+        <button id="new-quote" class="btn btn-secondary btn-outline-primary m-1" onclick="ramdomquote()">New quote</button>
+        <a href="#" class="btn btn-secondary btn-outline-primary m-1" id="tweet-quote" role="button" >Tweet</a>
+        </div>
+    </div>
+</body>
+<script>
+    const quotebank = [
+        {
+            quote:"The greatest glory in living lies not in never falling, but in rising every time we fall.", 
+            author:"Nelson Mandela"
+        },
+        {
+            quote:"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.", 
+            author:"Steve Jobs"
+        },
+        {
+            quote:"If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough.", 
+            author:"Oprah Winfrey"
+        },
+        {
+            quote:"If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success.", 
+            author:"James Cameron"
+        },
+        {
+            quote:"Spread love everywhere you go. Let no one ever come to you without leaving happier.", 
+            author:"Mother Teresa"
+        },
+        {
+            quote:"Many of life's failures are people who did not realize how close they were to success when they gave up.", 
+            author:"Thomas A. Edison"
+        },
+        {
+            quote:"In this life we cannot do great things. We can only do small things with great love.", 
+            author:"Mother Teresa"
+        },
+        {
+            quote:"Success is not final; failure is not fatal: It is the courage to continue that counts.", 
+            author:"Winston S. Churchill"
+        },
+        {
+            quote:"The real test is not whether you avoid this failure, because you won't. It's whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere.", 
+            author:"Barack Obama"
+        },
+        {
+            quote:"If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success.", 
+            author:"James Cameron"
+        }
+    ]
+    const colorbank = ["green", "Sienna", "Peru","NavajoWhite1", "red", "blue", "yellow", "purple" , "MediumSlateBlue", "Aquamarine2"]
+
+    window.onload = init;
+    function init(){
+        ramdomquote()
+    }
+    function ramdomquote(){
+        let randomquote = Math.floor(Math.random()*(quotebank.length + 1))
+        let currentquote = quotebank[randomquote].quote
+        let currentauthor = quotebank[randomquote].author
+        let tweetlink = "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=%22"
+        let quoteFormat = currentquote.replace(/ /g, "%20");
+        tweetlink += quoteFormat
+        let authorFormat = currentauthor.replace(/ /g, "%20");
+        tweetlink +=authorFormat
+
+        document.getElementById("text").innerHTML = currentquote
+        document.getElementById("author").innerHTML = currentauthor
+        document.getElementById("quote-box").style.backgroundColor = colorbank[randomquote]
+        document.getElementById("new-quote").style.backgroundColor = colorbank[randomquote]
+        document.getElementById("tweet-quote").style.backgroundColor = colorbank[randomquote]
+        document.getElementById("tweet-quote").href = tweetlink
+
+    }
+    
+</script>
+</html>
